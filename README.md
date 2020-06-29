@@ -1,4 +1,4 @@
-# Forgetful full nodes
+# Forgetful nodes
 
 Mitchell / Isthmus - June 2020
 
@@ -16,11 +16,11 @@ For a simple example, suppose I am currently running a full node that has verifi
 
 When I receive a new block/transaction, I iterate over the inputs, and completely verify each according to the standard verification protocol. Instead of retrieving the cryptographic proofs related with those outputs from local storage, I fetch them on-the-fly from my peers.
 
-The locally-stored output/txn/block index should be on the scale of megabytes, but would have the same security guarantee as a full node that retains all of the blocks. (*note, this assumes a secure hash function, but then again, doesn’t everything?*)
+The locally-stored output/txn/block index should be on the scale of megabytes, but would have the same self-verified security guarantee as a full node that retains all of the blocks. (*note, this assumes a secure hash function, but then again, doesn’t everything?*)
 
 On a practical note: The fact that spend time distributions (and, where applicable, ring member selection algorithms) skew towards recent transactions allows a convenient optimization! I maintain a rolling buffer that contains the full contents of the most recent blocks. 
 
-To pick the buffer size, we want to consider the historical spend time distribution (and, where applicable, ring member selection algorithms). Based on this [historical data](https://www.researchgate.net/figure/CDFs-of-spend-time-distributions-in-Bitcoin-and-in-Monero-deducible-transaction-inputs_fig7_324863990) from two cryptocurrencies, a one-month window seems like a good starting point. The buffer only needs to store a small number of recent blocks, and yet would countain more than 80% of the outputs referenced in real-time transactions. This would greatly reduce the bandwidth requirements with minimal increased local space requirements!
+To pick the buffer size, we want to consider the historical spend time distribution (and, where applicable, ring member selection algorithms). Based on this [historical data](https://www.researchgate.net/figure/CDFs-of-spend-time-distributions-in-Bitcoin-and-in-Monero-deducible-transaction-inputs_fig7_324863990) from two cryptocurrencies, a one-month window seems like a good starting point. The buffer only needs to store a small number of recent blocks, and yet would contain more than 80% of the outputs referenced in real-time transactions. This would greatly reduce the bandwidth requirements with minimal increased local space requirements!
 
 The downsides are obvious: increased device bandwidth, increased network load, and concerns revolving around “what if nobody stores the full blockchain anymore?”
 
