@@ -10,7 +10,7 @@ In 2010 I anticipated ubiquitous 10+ TB hard drives by 2020. Instead, a differen
 
 This course of technological history has stranded us with high-GB to low-TB scale laptop/desktop hard drives, which is terribly inconvenient for ever-growing distributed ledger databases and their egalitarian aspirations. Alas!
 
-Thus the shower thought: we can make the same cloud tradeoff - increased bandwidth for decreased local storage requirements. Furthemore, we can still “trust but verify” without the security tradeoffs of a remote node or SPV wallet. I can implement this locally today without needing to change the existing p2p protocol.
+Thus the shower thought: we can make the same cloud tradeoff - increased bandwidth for decreased local storage requirements. Furthermore, we can still “trust, but verify” without the security tradeoffs of a remote node or SPV wallet. I can implement this locally today without needing to change the existing p2p protocol.
 
 For a simple example, suppose I am currently running a full node that has verified every transaction from the genesis block to the current height. To reclaim disk space, I discard everything except a skeleton indexing of outputs, transaction hashes, and block height/hashes.
 
